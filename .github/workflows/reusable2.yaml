@@ -1,0 +1,21 @@
+name: Reusable workflow demo
+
+on:
+ workflow_call:
+  outputs:
+   firstword:
+    description: "word"
+    value: ${{jobs.demo_job.outputs.output1}}
+
+jobs:
+ demo_job:
+  name: test Reusable
+  runs-on: ubuntu-latest
+  outputs:
+   output1: ${{steps.step1.outputs.firstword}}
+  steps:
+   - id: step1  
+     run: echo"firstword=hai!!" >> $GITHUB_OUTPUT
+
+
+
