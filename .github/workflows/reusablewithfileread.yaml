@@ -1,14 +1,16 @@
 name: called reusable workflow which reads file
-'on':
+on:
   workflow_call:
     outputs:
       fileread:
-        description: output from file
-        value: null
+        description: "output from file"
+        value: ${{jobs.file_read_job.outputs.output1}}
 jobs:
   file_read_job:
     name: test file reads
     runs-on: ubuntu-latest
+    outputs: 
+     output1: ${{steps.step2.outputs.content}}
     steps:
       - name: checkout action
         id: step1
