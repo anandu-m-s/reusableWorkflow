@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
       - name: read file
         id: step2
-        uses: ./github/workflows@main
+        uses: ./github/workflows
         with:
           path: pkp.json
       - name: print file
