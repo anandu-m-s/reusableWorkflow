@@ -1,23 +1,22 @@
 name: called reusable workflow which reads file
 on:
   workflow_call:
-    outputs:
-      fileread:
-        description: output from file
-        value: '${{jobs.file_read_job.outputs.output1}}'
+    # outputs:
+    #   fileread:
+    #     description: output from file
+    #     value: '${{jobs.file_read_job.outputs.output1}}'
 jobs:
   file_read_job:
     name: test file reads
     runs-on: ubuntu-latest
-    outputs:
-      output1: '${{steps.step2.outputs.content}}'
+    # outputs:
+    #   output1: '${{steps.step2.outputs.content}}'
     steps:
       - name: checkout action
         id: step1
         uses: actions/checkout@v2
-      - name: checkout action
+      - name: file3 read
         id: step2
-        uses: actions/checkout@v2
         run: |
           file_path=".github/workflows/pkp.json"
           cat $file_path
