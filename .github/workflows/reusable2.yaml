@@ -16,7 +16,7 @@ jobs:
   steps:
    - id: step1  
      run: 
-      echo "firstword=hai!!" >> $GITHUB_OUTPUT
+      echo "firstword=hello from called reusable workflow !! " >> $GITHUB_OUTPUT
 
 
 
