@@ -15,7 +15,8 @@ jobs:
    output1: ${{steps.step1.outputs.firstword}}
   steps:
    - id: step1  
-     run: echo"firstword=hai!!" >> $GITHUB_OUTPUT
+     run: 
+      echo "firstword=hai!!" >> $GITHUB_OUTPUT
 
 
 
