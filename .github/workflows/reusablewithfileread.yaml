@@ -19,4 +19,4 @@ jobs:
         with:
           path: pkp.json
       - name: print file
-        run: 'echo "${{steps.step1.outputs.content}}"'
+        run: 'echo "${{steps.step2.outputs.content}}"'
