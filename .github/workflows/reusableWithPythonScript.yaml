@@ -16,7 +16,11 @@ jobs:
          ref: main
       - name: print py file
         run: |
-         cat called-workflow-repo/call_test.py   
+         cat called-workflow-repo/call_test.py
+      - name: get python file
+        id: pyfile
+        run: |
+         py_path="called-workflow-repo/call_test.py" >> GITHUB_ENV      
       - name: checkout action
         id: step1
         uses: actions/checkout@v3
@@ -35,6 +39,6 @@ jobs:
           cat $file_path 
       - name: call python script
         id: step5
-        run: cat called-workflow-repo/call_test.py
+        run: cat ${{steps.pyfile.outputs.py_path}}
 
 
