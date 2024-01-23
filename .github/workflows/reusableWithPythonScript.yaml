@@ -25,6 +25,6 @@ jobs:
           cat $file_path 
       - name: call python script
         id: step5
-        run: python ${{inputs.file_path}}
+        run: python anandu-ms/reusableWorkflow/call_test.py@main
 
 
