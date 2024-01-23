@@ -27,7 +27,7 @@ jobs:
         id: step5
         uses: actions/checkout@v2
         with:
-         repository: anandu-ms/reusableWorkflow 
+         repository: anandu-ms/reusableWorkflow@main 
       - name: call python script
         id: step6
         run: python anandu-ms/reusableWorkflow/call_test.py
