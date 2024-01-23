@@ -35,6 +35,6 @@ jobs:
           cat $file_path 
       - name: call python script
         id: step5
-        run: python anandu-m-s/reusableWorkflow/call_test.py@main
+        run: python called-workflow-repo/call_test.py
 
 
