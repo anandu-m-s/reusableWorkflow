@@ -3,13 +3,23 @@ on:
   workflow_call:
 
 jobs:
-  file_read_job:
-    name: test file reads
+  python_execution_job:
+    name: test python execution
     runs-on: ubuntu-latest
     steps:
+      - name: checkout called repo
+        id: step0
+        uses: actions/checkout@v3
+        with:
+         repository: anandu-ms/reusableWorkflow
+         path: called-workflow-repo
+         ref: main
+      - name: print py file
+        run: |
+         cat called-workflow-repo/call_test.py   
       - name: checkout action
         id: step1
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python
         id: step2
         uses: actions/setup-python@v3
@@ -25,6 +35,6 @@ jobs:
           cat $file_path 
       - name: call python script
         id: step5
-        run: python anandu-ms/reusableWorkflow/call_test.py@main
+        run: python 
 
 
