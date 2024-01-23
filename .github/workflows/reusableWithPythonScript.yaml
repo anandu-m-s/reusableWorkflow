@@ -25,4 +25,4 @@ jobs:
           cat $file_path
       - name: Call Python script
         id: step5
-        run: python anandu-ms/reusableWorkflow/call_test.py  
+        run: python call_api.py  
