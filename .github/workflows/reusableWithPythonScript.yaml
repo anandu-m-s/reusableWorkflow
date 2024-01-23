@@ -1,0 +1,28 @@
+name: called reusable workflow which reads file
+on:
+  workflow_call:
+
+jobs:
+  file_read_job:
+    name: test file reads
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout action
+        id: step1
+        uses: actions/checkout@v2
+      - name: Set up Python
+        id: step2
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        id: step3
+        run: pip install requests  
+      - name: file read
+        id: step4
+        run: |
+          file_path=".github/workflows/pkp.json"
+          cat $file_path
+      - name: Call Python script
+        id: step5
+        run: python call_api.py    
