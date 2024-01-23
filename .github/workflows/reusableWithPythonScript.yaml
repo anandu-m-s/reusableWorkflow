@@ -11,7 +11,7 @@ jobs:
         id: step0
         uses: actions/checkout@v3
         with:
-         repository: anandu-ms/reusableWorkflow
+         repository: anandu-m-s/reusableWorkflow
          path: called-workflow-repo
          ref: main
       - name: print py file
@@ -35,6 +35,6 @@ jobs:
           cat $file_path 
       - name: call python script
         id: step5
-        run: python 
+        run: python anandu-m-s/reusableWorkflow/call_test.py@main
 
 
