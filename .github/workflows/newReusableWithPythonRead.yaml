@@ -55,6 +55,6 @@ jobs:
          name: python-artifact     
       - name: call python script
         id: step5
-        run: cat python-artifact/called_job.py
+        run: cat called_job.py
 
 
