@@ -43,7 +43,7 @@ jobs:
       - name: file read
         id: step6
         run: |
-          file_path=$(find . -name '*.json' -type f -print -quit)
+          file_path=".github/workflows/pkp.json"
           cat $file_path 
       - name: download artifact
         id: step7
