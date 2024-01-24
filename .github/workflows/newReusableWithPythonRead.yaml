@@ -57,6 +57,8 @@ jobs:
          name: python-artifact     
       - name: call python script
         id: step9
-        run: python called_job.py   
+        run: |
+         file_path=$(find . -name '*.json' -type f -print -quit)
+         python called_job.py $file_path    
 
 
