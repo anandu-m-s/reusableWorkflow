@@ -3,7 +3,7 @@ on:
   workflow_call:
 
 jobs:
-  called_function_job:
+  called_repo_job:
     name: get the python script file in called repo 
     runs-on: ubuntu-latest
     steps:
@@ -14,15 +14,12 @@ jobs:
          repository: anandu-m-s/reusableWorkflow
          path: called-workflow-repo
          ref: main
-      - name: print py file
-        run: |
-         cat called-workflow-repo/call_test.py
       - name: get python file
-        id: pyfile
+        id: step1
         run: |
          echo "$(cat called-workflow-repo/call_test.py)" > called_job.py
       - name: save artifact
-        id: upload
+        id: step2
         uses: actions/upload-artifact@v2
         with:
          name: python-artifact
@@ -33,31 +30,28 @@ jobs:
     needs: called_function_job
     steps:    
       - name: checkout action
-        id: step1
+        id: step3
         uses: actions/checkout@v3
       - name: Set up Python
-        id: step2
+        id: step4
         uses: actions/setup-python@v3
         with:
           python-version: 3.8
       - name: Install dependencies
-        id: step3
+        id: step5
         run: pip install requests  
       - name: file read
-        id: step4
+        id: step6
         run: |
           file_path=".github/workflows/pkp.json"
           cat $file_path 
       - name: download artifact
-        id: download
+        id: step7
         uses: actions/download-artifact@v2
         with:
          name: python-artifact     
       - name: call python script
-        id: step5
-        run: cat called_job.py
-      - name: call python script
-        id: step6
-        run: python called_job.py  
+        id: step8
+        run: python called_job.py   
 
 
