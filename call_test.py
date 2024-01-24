@@ -1,20 +1,20 @@
 import requests
-import zipfile
+import shutil
 import os
 import sys
-def create_zip_file(json_file_path):
+def store_json_to_temp(json_file_path):
    try:
       # with open(file,'r') as file:
          # data = file.read()
          # print("json file content::")
          # print(data)
-      zip_file_path = f".github/workflows/{os.path.basename(json_file_path).replace('.json', '_archive.zip')}"
-      with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
-            # Add the JSON file to the zip file
-            zip_file.write(json_file_path, os.path.basename(json_file_path))
-            print(f"Zip file '{zip_file_path}' created containing: {os.path.basename(json_file_path)}")
+      # Determine the destination path in the workspace
+        destination_path = os.path.join(os.getenv("GITHUB_WORKSPACE"), os.path.basename(json_file_path))
+       # Copy the JSON file to the workspace
+        shutil.copyfile(json_file_path, destination_path)
+        print(f"JSON file '{json_file_path}' copied to workspace at: {destination_path}")
    except Exception as e:
-        print(f"Error creating zip file: {e}")    
+        print(f"Error copying JSON file: {e}")    
 if __name__ == "__main__":
    json_file_path = sys.argv[1]
-   create_zip_file(json_file_path)
+   store_json_to_temp(json_file_path)

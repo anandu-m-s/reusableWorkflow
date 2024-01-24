@@ -39,7 +39,9 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         id: step5
-        run: pip install requests  
+        run: |
+         pip install requests
+         pip install shutils  
       - name: file read
         id: step6
         run: |
