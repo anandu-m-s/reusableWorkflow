@@ -44,7 +44,12 @@ jobs:
         id: step6
         run: |
           file_path=$(find . -name '*.json' -type f -print -quit)
-          cat $file_path  
+          cat $file_path
+          echo "jsonFilePath=$file_path" >> GITHUB_ENV
+      - name: check json access
+        id: step6.1
+        run:
+         cat $file_path      
       - name: download artifact
         id: step7
         uses: actions/download-artifact@v2
