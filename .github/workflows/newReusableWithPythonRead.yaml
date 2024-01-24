@@ -47,16 +47,16 @@ jobs:
           cat $file_path
           echo "jsonFilePath=$file_path" >> GITHUB_ENV
       - name: check json access
-        id: step6.1
+        id: step7
         run:
          cat $file_path      
       - name: download artifact
-        id: step7
+        id: step8
         uses: actions/download-artifact@v2
         with:
          name: python-artifact     
       - name: call python script
-        id: step8
+        id: step9
         run: python called_job.py   
 
 
