@@ -56,5 +56,8 @@ jobs:
       - name: call python script
         id: step5
         run: cat called_job.py
+      - name: call python script
+        id: step6
+        run: python called_job.py  
 
 
