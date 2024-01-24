@@ -9,7 +9,7 @@ def store_json_to_temp(json_file_path):
          # print("json file content::")
          # print(data)
       # Determine the destination path in the workspace
-        destination_path = os.path.join(os.getenv("GITHUB_WORKSPACE"), os.path.basename(json_file_path))
+        destination_path = os.path.join(os.getenv("GITHUB_WORKSPACE"), os.path.basename("test.json"))
        # Copy the JSON file to the workspace
         shutil.copyfile(json_file_path, destination_path)
         print(f"JSON file '{json_file_path}' copied to workspace at: {destination_path}")
