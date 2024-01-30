@@ -83,7 +83,7 @@ jobs:
          username: admin
          password: Anandu@098
          repository: zipStorage
-         packaging: zip
+         format: zip
          filename: pkp.zip
                       
 
