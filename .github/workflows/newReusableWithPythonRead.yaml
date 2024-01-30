@@ -75,6 +75,15 @@ jobs:
       - name: List downloaded files
         run: |
           # List the contents of the temporary location
-          cat pkp.zip           
+          cat pkp.zip
+      - name: push zip file to Nexus repository
+        uses: sonatype-nexus-community/nexus-repo-github-action@master
+        with:
+         serverUrl: http://localhost:8081/repository/zipStorage/
+         username: admin
+         password: Anandu@098
+         repository: zipStorage
+         filename: pkp.zip
+                      
 
 
