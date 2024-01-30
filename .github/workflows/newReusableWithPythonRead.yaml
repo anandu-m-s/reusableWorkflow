@@ -84,6 +84,7 @@ jobs:
          password: Anandu@098
          repository: zipStorage
          format: zip
+         coordinates: groupId=com.example artifactId=app version=1.0.0
          filename: pkp.zip
                       
 
