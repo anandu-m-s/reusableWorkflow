@@ -81,8 +81,8 @@ jobs:
         with:
          serverUrl: http://localhost:8081/repository/
          username: admin
-         password: Anandu@098
-         repository: zipStorage
+         password: aps@123
+         repository: zipdemo
          format: zip
          coordinates: groupId=com.example artifactId=app version=1.0.0
          assets: extension=zip
