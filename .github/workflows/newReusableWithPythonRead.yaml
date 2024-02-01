@@ -79,7 +79,7 @@ jobs:
       - name: push zip file to Nexus repository
         uses: sonatype-nexus-community/nexus-repo-github-action@master
         with:
-         serverUrl: http://localhost:8081/#admin/repository/repositories
+         serverUrl: http://localhost:8081/repository/zipStorage/
          username: admin
          password: Anandu@098
          repository: zipStorage
