@@ -79,12 +79,12 @@ jobs:
       - name: push zip file to Nexus repository
         uses: sonatype-nexus-community/nexus-repo-github-action@master
         with:
-         serverUrl: http://127.0.0.1:8081/repository/zipStorage/
+         serverUrl: http://localhost:8081/#admin/repository/repositories
          username: admin
          password: Anandu@098
          repository: zipStorage
          format: raw
-         coordinates: groupId=com.example artifactId=app version=1.0.0
+        #  coordinates: groupId=com.example artifactId=app version=1.0.0
          assets: extension=zip
          filename: pkp.zip
                       
