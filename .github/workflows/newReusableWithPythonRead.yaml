@@ -81,8 +81,8 @@ jobs:
       - name: List downloaded files
         run: |
           # List the contents of the temporary location
-          ls -l 
-          cat pkp.zip
+          # ls -l 
+          cat tmp/pkp.zip
       - name: unzip
         id: unzip
         run: |
