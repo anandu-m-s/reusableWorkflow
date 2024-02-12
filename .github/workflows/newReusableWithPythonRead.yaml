@@ -82,15 +82,11 @@ jobs:
         run: |
           # List the contents of the temporary location
           ls -l tmp
-          # cat tmp/pkp.zip
+          cat tmp/pkp.zip
       - name: unzip
         id: unzip
         run: |
          unzip tmp/pkp.zip -d extracted_file
-      - name: move file
-        id: move
-        run: | 
-         sudo cp -r extracted_file /mnt/c/
 
       # - name: push zip file to Nexus repository
       #   uses: sonatype-nexus-community/nexus-repo-github-action@master
