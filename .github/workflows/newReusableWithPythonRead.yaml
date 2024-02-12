@@ -13,7 +13,7 @@ jobs:
         with:
          repository: anandu-m-s/reusableWorkflow
          path: called-workflow-repo
-         ref: main
+        # ref: main
       - name: get python file
         id: step1
         run: |
