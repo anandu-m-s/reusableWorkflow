@@ -12,7 +12,7 @@ def download_zip(api_url):
     zip_file_path = os.path.join(destination_path,"pkp.zip")
     
     if response.status_code == 200:
-        with open(destination_path, 'wb') as file:
+        with open(zip_file_path, 'wb') as file:
             for chunk in response.iter_content(chunk_size=128):
                 file.write(chunk)
         print(f"ZIP file downloaded and saved to: {zip_file_path}")
