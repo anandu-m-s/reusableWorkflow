@@ -72,6 +72,12 @@ jobs:
         id: step11
         run: |
          python call_zip.py
+      - name: upload zip as artifact
+        id: upload-zip 
+        uses: actions/upload-artifact@v2
+        with:
+         name:  upload-zip
+         path: ${{ steps.step11.outputs.zipFilePath }}
       - name: List downloaded files
         run: |
           # List the contents of the temporary location

@@ -3,13 +3,21 @@ import os
 
 def download_zip(api_url):
     response = requests.get(api_url, stream=True)
+    
+    workspace_path = os.getenv("GITHUB_WORKSPACE")
+    destination_path = os.path.join(workspace_path, "tmp")
+    if not os.path.exists(destination_path):
+        os.makedirs(destination_path)
 
-    destination_path = os.path.join(os.getenv("GITHUB_WORKSPACE"), os.path.basename("pkp.zip"))
+    zip_file_path = os.path.join(destination_path,"pkp.zip")
+    
     if response.status_code == 200:
         with open(destination_path, 'wb') as file:
             for chunk in response.iter_content(chunk_size=128):
                 file.write(chunk)
-        print(f"ZIP file downloaded and saved to: {destination_path}")
+        print(f"ZIP file downloaded and saved to: {zip_file_path}")
+        # upload zip file as artifact
+        os.system(f"echo '::set-output name=zipFilePath::{zip_file_path}'")
     else:
         print(f"Failed to download ZIP file. Status code: {response.status_code}")
 
