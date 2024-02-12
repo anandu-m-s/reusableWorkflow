@@ -1,4 +1,4 @@
-name: called reusable workflow with python execution with artifacts
+name: reusable workflow with python execution with artifacts in test branch
 on:
   workflow_call:
 
