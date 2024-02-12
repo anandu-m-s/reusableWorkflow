@@ -4,7 +4,7 @@ import os
 def download_zip(api_url):
     response = requests.get(api_url, stream=True)
 
-    destination_path = os.path.join(os.getenv("GITHUB_WORKSPACE"),"tmp", os.path.basename("pkp.zip"))
+    destination_path = os.path.join(os.getenv("GITHUB_WORKSPACE"), os.path.basename("pkp.zip"))
     if response.status_code == 200:
         with open(destination_path, 'wb') as file:
             for chunk in response.iter_content(chunk_size=128):
