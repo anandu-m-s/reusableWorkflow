@@ -66,8 +66,7 @@ jobs:
       - name: print python in scripts
         id: step
         run: |
-         cat demo.py 
-         cat demoCheck.py   
+         cat call_zip.py  
       - name: call python script for json
         id: step9
         run: |
