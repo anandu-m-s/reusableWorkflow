@@ -68,10 +68,10 @@ jobs:
       #   run: |
       #    file_path=$(find . -name '*.json' -type f -print -quit)
       #    python called_job.py $file_path
-      - name: call file stored in temporary location
-        id: step10
-        run: |
-         cat test.json
+      # - name: call file stored in temporary location
+      #   id: step10
+      #   run: |
+      #    cat test.json
       - name: call python script for zip
         id: step11
         run: |
