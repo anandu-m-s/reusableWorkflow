@@ -17,7 +17,7 @@ jobs:
       - name: get python file
         id: step1
         run: |
-         echo "$(cat called-workflow-repo/scripts/testDemo.py)" > testDemo.py
+         echo "$(cat called-workflow-repo/scripts/testDemo1.py)" > testDemo.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
@@ -76,12 +76,12 @@ jobs:
         id: step11
         run: |
          python testDemo.py
-      - name: upload zip as artifact
-        id: upload-zip 
-        uses: actions/upload-artifact@v2
-        with:
-         name:  upload-zip
-         path: ${{ steps.step11.outputs.zipFilePath }}
+      # - name: upload zip as artifact
+      #   id: upload-zip 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #    name:  upload-zip
+      #    path: ${{ steps.step11.outputs.zipFilePath }}
       - name: List downloaded files
         run: |
           # List the contents of the temporary location
