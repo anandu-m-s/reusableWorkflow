@@ -17,12 +17,12 @@ jobs:
       - name: get python file
         id: step1
         run: |
-         echo "$(cat called-workflow-repo/scripts/testDemo.py)" > testDemo.py
+         echo "$(cat called-workflow-repo/test.py)" > testDemo.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
         with:
-         name: python-artifact
+         name: python-artifact-new
          path: |
            testDemo.py
 
@@ -58,8 +58,8 @@ jobs:
         id: step8
         uses: actions/download-artifact@v2
         with:
-         name: python-artifact    
-      - name: print python in scripts
+         name: python-artifact-new    
+      - name: print python scripts
         id: step
         run: |
          cat testDemo.py 
