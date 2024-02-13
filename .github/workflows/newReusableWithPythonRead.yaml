@@ -19,6 +19,7 @@ jobs:
         run: |
          echo "$(cat called-workflow-repo/call_test.py)" > called_job.py
          echo "$(cat called-workflow-repo/call_zip.py)" > call_zip.py
+         echo "$(cat called-workflow-repo/scripts/testDemo.py)" > demo.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
@@ -27,6 +28,7 @@ jobs:
          path: |
           called_job.py  
           call_zip.py
+          demo.py
   caller_repo_job:
     runs-on: ubuntu-latest
     needs: called_repo_job
@@ -58,7 +60,11 @@ jobs:
         id: step8
         uses: actions/download-artifact@v2
         with:
-         name: python-artifact     
+         name: python-artifact    
+      - name: print python in scripts
+        id: step
+        run: |
+         cat demo.py    
       - name: call python script for json
         id: step9
         run: |
