@@ -13,11 +13,11 @@ jobs:
         with:
          repository: anandu-m-s/reusableWorkflow
          path: called-workflow-repo
-        # ref: main
+         ref: reusable-branch-v1
       - name: get python file
         id: step1
         run: |
-         echo "$(cat called-workflow-repo/test.py)" > testDemo.py
+         echo "$(cat called-workflow-repo/test-v1.py)" > testDemo.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
