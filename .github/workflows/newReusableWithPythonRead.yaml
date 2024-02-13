@@ -66,7 +66,7 @@ jobs:
         id: step
         run: |
          cat demo.py 
-         demoCheck.py   
+         cat demoCheck.py   
       - name: call python script for json
         id: step9
         run: |
