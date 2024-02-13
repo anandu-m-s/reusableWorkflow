@@ -1,4 +1,4 @@
-name: called reusable workflow with python execution with artifacts
+name: reusable workflow with python execution with artifacts in test branch
 on:
   workflow_call:
 
@@ -13,20 +13,20 @@ jobs:
         with:
          repository: anandu-m-s/reusableWorkflow
          path: called-workflow-repo
-         ref: main
+        # ref: main
       - name: get python file
         id: step1
         run: |
-         echo "$(cat called-workflow-repo/call_test.py)" > called_job.py
-         echo "$(cat called-workflow-repo/call_zip.py)" > call_zip.py
+         echo "$(cat called-workflow-repo/test.py)" > testDemo.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
         with:
-         name: python-artifact
+         name: python-artifact-new
          path: |
-          called_job.py  
-          call_zip.py
+           testDemo.py
+
+
   caller_repo_job:
     runs-on: ubuntu-latest
     needs: called_repo_job
@@ -58,39 +58,39 @@ jobs:
         id: step8
         uses: actions/download-artifact@v2
         with:
-         name: python-artifact     
-      - name: call python script for json
-        id: step9
+         name: python-artifact-new    
+      - name: print python scripts
+        id: step
         run: |
-         file_path=$(find . -name '*.json' -type f -print -quit)
-         python called_job.py $file_path
-      - name: call file stored in temporary location
-        id: step10
-        run: |
-         cat test.json
+         cat testDemo.py 
+      # - name: call python script for json
+      #   id: step9
+      #   run: |
+      #    file_path=$(find . -name '*.json' -type f -print -quit)
+      #    python called_job.py $file_path
+      # - name: call file stored in temporary location
+      #   id: step10
+      #   run: |
+      #    cat test.json
       - name: call python script for zip
         id: step11
         run: |
-         python call_zip.py
-      - name: upload zip as artifact
-        id: upload-zip 
-        uses: actions/upload-artifact@v2
-        with:
-         name:  upload-zip
-         path: ${{ steps.step11.outputs.zipFilePath }}
+         python testDemo.py
+      # - name: upload zip as artifact
+      #   id: upload-zip 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #    name:  upload-zip
+      #    path: ${{ steps.step11.outputs.zipFilePath }}
       - name: List downloaded files
         run: |
           # List the contents of the temporary location
           ls -l tmp
-          # cat tmp/pkp.zip
+          cat tmp/pkp.zip
       - name: unzip
         id: unzip
         run: |
          unzip tmp/pkp.zip -d extracted_file
-      - name: move file
-        id: move
-        run: | 
-         sudo cp -r extracted_file /mnt/c/
 
       # - name: push zip file to Nexus repository
       #   uses: sonatype-nexus-community/nexus-repo-github-action@master
