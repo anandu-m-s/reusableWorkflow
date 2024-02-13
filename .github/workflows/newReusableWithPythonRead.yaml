@@ -20,6 +20,7 @@ jobs:
          echo "$(cat called-workflow-repo/call_test.py)" > called_job.py
          echo "$(cat called-workflow-repo/call_zip.py)" > call_zip.py
          echo "$(cat called-workflow-repo/scripts/testDemo.py)" > demo.py
+         echo "$(cat called-workflow-repo/demo2.py)" > demoCheck.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
@@ -64,7 +65,8 @@ jobs:
       - name: print python in scripts
         id: step
         run: |
-         cat demo.py    
+         cat demo.py 
+         demoCheck.py   
       - name: call python script for json
         id: step9
         run: |
