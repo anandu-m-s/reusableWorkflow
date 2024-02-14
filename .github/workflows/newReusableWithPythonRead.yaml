@@ -13,11 +13,11 @@ jobs:
         with:
          repository: anandu-m-s/reusableWorkflow
          path: called-workflow-repo
-        # ref: main
+         ref: reusable-branch-v1
       - name: get python file
         id: step1
         run: |
-         echo "$(cat called-workflow-repo/test.py)" > testDemo.py
+         echo "$(cat called-workflow-repo/test-v1.py)" > testDemo.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
@@ -25,6 +25,10 @@ jobs:
          name: python-artifact-new
          path: |
            testDemo.py
+      - name: access the secrets stored
+        id: secret
+        run: |
+         echo "The secret in reusable repo is ${{secrets.AUTH_TOKEN}}"     
 
 
   caller_repo_job:
@@ -76,6 +80,8 @@ jobs:
         id: step11
         run: |
          python testDemo.py
+        env:
+         TOKEN: ${{secrets.AUTH_TOKEN}} 
       # - name: upload zip as artifact
       #   id: upload-zip 
       #   uses: actions/upload-artifact@v2
