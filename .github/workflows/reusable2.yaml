@@ -8,6 +8,9 @@ jobs:
   name: test Reusable
   runs-on: ubuntu-latest
   steps:
+   - name: checkout action
+     id: step3
+     uses: actions/checkout@v3
    - name: access secrets
      id: step1
      run: |
