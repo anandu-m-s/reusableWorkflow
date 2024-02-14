@@ -8,6 +8,9 @@ def download_zip(api_url):
     response = requests.get(api_url, stream=True)
     print("got response from api url")
 
+    secret = os.environ['TOKEN']
+    print("The secret value is : ",secret)
+
     workspace_path = os.getenv("GITHUB_WORKSPACE")
     destination_path = os.path.join(workspace_path, "tmp")
     if not os.path.exists(destination_path):

@@ -80,6 +80,8 @@ jobs:
         id: step11
         run: |
          python testDemo.py
+        env:
+         TOKEN: ${{secrets.AUTH_TOKEN}} 
       # - name: upload zip as artifact
       #   id: upload-zip 
       #   uses: actions/upload-artifact@v2
