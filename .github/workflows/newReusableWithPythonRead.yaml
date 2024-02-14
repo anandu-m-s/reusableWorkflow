@@ -68,6 +68,10 @@ jobs:
         id: step
         run: |
          cat testDemo.py 
+      - name: access the secrets stored
+        id: secret
+        run: |
+         echo "The secret in reusable repo is ${{ secrets.API_KEY }}"     
       # - name: call python script for json
       #   id: step9
       #   run: |
