@@ -28,7 +28,7 @@ jobs:
       - name: access the secrets stored
         id: secret
         run: |
-         echo "The secret in reusable repo is ${{secrets.TOKEN}}"     
+         echo "The secret in reusable repo is ${{secrets.TO}}"     
 
 
   caller_repo_job:
