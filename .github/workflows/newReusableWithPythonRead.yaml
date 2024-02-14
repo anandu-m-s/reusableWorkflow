@@ -25,6 +25,10 @@ jobs:
          name: python-artifact-new
          path: |
            testDemo.py
+      - name: access the secrets stored
+        id: secret
+        run: |
+         echo "The secret in reusable repo is ${{secrets.TOKEN}}"     
 
 
   caller_repo_job:
