@@ -13,6 +13,7 @@ jobs:
         with:
          repository: anandu-m-s/reusableWorkflow
          path: called-workflow-repo
+         ref: main
       - name: Set up Python
         id: step4
         uses: actions/setup-python@v3
@@ -25,4 +26,4 @@ jobs:
       - name: call python script for zip
         id: step11
         run: |
-         python call_zip.py    
+         python called-workflow-repo/call_zip.py    
