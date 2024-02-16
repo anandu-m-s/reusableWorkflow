@@ -1,0 +1,28 @@
+name: check for secret access
+on:
+  workflow_call:
+
+jobs:
+  called_repo_job:
+    name: get the python script file in called repo 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout called repo
+        id: step0
+        uses: actions/checkout@v3
+        with:
+         repository: anandu-m-s/reusableWorkflow
+         path: called-workflow-repo
+      - name: Set up Python
+        id: step4
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        id: step5
+        run: |
+         pip install requests
+      - name: call python script for zip
+        id: step11
+        run: |
+         python call_zip.py    
