@@ -66,11 +66,7 @@ jobs:
           # List the contents of the temporary location
           ls -l tmp
           cat tmp/pkp.zip   
-      - name: access the secrets stored in reusable
+      - name: access the secrets stored
         id: secret
         run: |
-         echo "The secret in reusable repo is ${{ secrets.AUTH_TOKEN }}"  
-      - name: access the secrets stored in caller
-        id: secret
-        run: |
-         echo "The secret in reusable repo is ${{ secrets.API_KEY }}"     
+         echo "The secret in reusable repo is ${{ secrets.AUTH_TOKEN }}"      
