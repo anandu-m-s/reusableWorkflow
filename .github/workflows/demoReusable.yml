@@ -60,4 +60,9 @@ jobs:
       - name: print json in called
         id: step7
         run:
-         cat pkp.json    
+         cat pkp.json   
+      - name: List downloaded files
+        run: |
+          # List the contents of the temporary location
+          ls -l tmp
+          cat tmp/pkp.zip    
