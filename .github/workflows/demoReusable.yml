@@ -26,7 +26,15 @@ jobs:
         with:
          name: json-artifact
          path: |
-           pkp.json    
+           pkp.json 
+      - name: access the secrets stored in called
+        id: secret1
+        run: |
+         echo "The secret in reusable repo is ${{ secrets.AUTH_TOKEN }}"  
+      - name: access the secrets stored in caller
+        id: secret-caller1
+        run: |
+         echo "The secret in reusable repo is ${{ secrets.API_KEY }}"         
       
   called_repo_job:
     name: get the python script file in called repo 
