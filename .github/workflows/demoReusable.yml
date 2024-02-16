@@ -3,6 +3,31 @@ on:
   workflow_call:
 
 jobs:
+
+  caller_repo_job:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: checkout action
+        id: step3
+        uses: actions/checkout@v3
+      - name: file read
+        id: step6
+        run: |
+          file_path=$(find . -name '*.json' -type f -print -quit)
+          cat $file_path
+          echo "jsonFilePath=$file_path" >> GITHUB_ENV
+      - name: check json access
+        id: step7
+        run:
+         cat $file_path 
+      - name: save artifact
+        id: step2
+        uses: actions/upload-artifact@v2
+        with:
+         name: json-artifact
+         path: |
+           pkp.json    
+      
   called_repo_job:
     name: get the python script file in called repo 
     runs-on: ubuntu-latest
@@ -26,4 +51,9 @@ jobs:
       - name: call python script for zip
         id: step11
         run: |
-         python called-workflow-repo/call_zip.py    
+         python called-workflow-repo/call_zip.py   
+      - name: download artifact
+        id: step8
+        uses: actions/download-artifact@v2
+        with:
+         name: json-artifact 
