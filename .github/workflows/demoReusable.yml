@@ -19,7 +19,7 @@ jobs:
       - name: check json access
         id: step7
         run:
-         cat $file_path 
+         cat pkp.json
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
@@ -57,3 +57,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
          name: json-artifact 
+      - name: print json in called
+        id: step7
+        run:
+         cat pkp.json    
