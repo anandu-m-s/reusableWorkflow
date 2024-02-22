@@ -59,7 +59,7 @@ jobs:
         id: step99
         run: |
           branch = ${{ github.ref }}
-          echo branch
+          echo $branch
       - name: check json access
         id: step7
         run:
