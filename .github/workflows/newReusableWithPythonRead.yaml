@@ -101,7 +101,7 @@ jobs:
       - name: check if zip file generated
         id: check-zip
         run: |
-           if[ tmp/pkp.zip ]
+           if[ $tmp/pkp.zip ]
            then
             echo "Zip file generated, proceeding with artifact upload"
             exit 1
