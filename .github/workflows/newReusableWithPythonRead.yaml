@@ -59,7 +59,7 @@ jobs:
         id: step99
         run: |
           echo "${{ github.ref }}"
-          if[ ${{ github.ref }} ]
+          if[[ ${{ github.ref }} == refs/heads/main ]]
           then
            echo "true"
           else
