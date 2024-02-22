@@ -53,8 +53,12 @@ jobs:
         id: step6
         run: |
           file_path=$(find . -name '*.json' -type f -print -quit)
-          cat $file_path
-          echo "jsonFilePath=$file_path" >> GITHUB_ENV
+          if[ file_path ]
+          then
+           cat $file_path
+           echo "jsonFilePath=$file_path" >> GITHUB_ENV
+          else
+           echo "not found....."  
       - name: check json access
         id: step7
         run:
@@ -101,6 +105,7 @@ jobs:
       - name: check if zip file generated
         id: check-zip
         run: |
+           
            if[ ${{ steps.step11.outputs.zip_file_path }} ]
            then
             echo "Zip file generated, proceeding with artifact upload"
