@@ -58,8 +58,7 @@ jobs:
       - name: check if condition
         id: step99
         run: |
-          branch = ${{ github.ref }}
-          echo "hello"
+          echo "${{ github.ref }}"
       - name: check json access
         id: step7
         run:
