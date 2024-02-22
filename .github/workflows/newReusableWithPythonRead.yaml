@@ -56,7 +56,7 @@ jobs:
           (ls file_path && echo yes) || echo no
           a=1
           b=2
-          if[ $a -eq $b ]
+          if[ "$a" -eq "$b" ]
           then
            cat $file_path
            echo "jsonFilePath=$file_path" >> GITHUB_ENV
