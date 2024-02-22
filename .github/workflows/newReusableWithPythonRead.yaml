@@ -52,15 +52,14 @@ jobs:
       - name: file read
         id: step6
         run: |
-          # file_path=$(find . -name '*.json' -type f -print -quit)
-          # (ls file_path && echo yes) || echo no
-          if[ $((10%2))==0 ];then
-          #  cat $file_path
-          #  echo "jsonFilePath=$file_path" >> GITHUB_ENV
-          echo "true..."
-          else
-           echo "not found....." 
-          fi  
+          file_path=$(find . -name '*.json' -type f -print -quit)
+          cat $file_path
+          echo "jsonFilePath=$file_path" >> GITHUB_ENV
+      - name: check if condition
+        id: step99
+        run: |
+          branch = ${{ github.ref }}
+          echo branch
       - name: check json access
         id: step7
         run:
