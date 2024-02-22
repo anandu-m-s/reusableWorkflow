@@ -18,7 +18,7 @@ jobs:
       - name: get python file
         id: step1
         run: |
-         echo "$(cat called-workflow-repo/test-v1.py)" > testDemo.py
+         echo "$(cat called-workflow-repo/scripts/call_zip.py)" > testDemo.py
       - name: save artifact
         id: step2
         uses: actions/upload-artifact@v2
@@ -26,10 +26,10 @@ jobs:
          name: python-artifact-new
          path: |
            testDemo.py
-      - name: access the secrets stored
-        id: secret
-        run: |
-         echo "The secret in reusable repo is ${{ secrets.AUTH_TOKEN }}"     
+      # - name: access the secrets stored
+      #   id: secret
+      #   run: |
+      #    echo "The secret in reusable repo is ${{ secrets.AUTH_TOKEN }}"     
 
 
   caller_repo_job:
@@ -68,25 +68,25 @@ jobs:
         id: step
         run: |
          cat testDemo.py 
-      - name: access the secrets stored
-        id: secret
-        run: |
-         echo "The secret in reusable repo is ${{ secrets.API_KEY }}"     
-      # - name: call python script for json
-      #   id: step9
+      # - name: access the secrets stored
+      #   id: secret
       #   run: |
-      #    file_path=$(find . -name '*.json' -type f -print -quit)
-      #    python called_job.py $file_path
+      #    echo "The secret in reusable repo is ${{ secrets.API_KEY }}"     
+      - name: call python script for json
+        id: step9
+        run: |
+         file_path=$(find . -name '*.json' -type f -print -quit)
+         python testDemo.py $file_path
       # - name: call file stored in temporary location
       #   id: step10
       #   run: |
       #    cat test.json
-      - name: call python script for zip
-        id: step11
-        run: |
-         python testDemo.py
-        env:
-         TOKEN: ${{secrets.AUTH_TOKEN}} 
+      # - name: call python script for zip
+      #   id: step11
+      #   run: |
+      #    python testDemo.py
+      #   env:
+      #    TOKEN: ${{secrets.AUTH_TOKEN}} 
       # - name: upload zip as artifact
       #   id: upload-zip 
       #   uses: actions/upload-artifact@v2
@@ -98,10 +98,10 @@ jobs:
           # List the contents of the temporary location
           ls -l tmp
           cat tmp/pkp.zip
-      - name: unzip
-        id: unzip
-        run: |
-         unzip tmp/pkp.zip -d extracted_file
+      # - name: unzip
+      #   id: unzip
+      #   run: |
+      #    unzip tmp/pkp.zip -d extracted_file
 
       # - name: push zip file to Nexus repository
       #   uses: sonatype-nexus-community/nexus-repo-github-action@master
