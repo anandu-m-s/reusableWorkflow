@@ -53,7 +53,7 @@ jobs:
         id: step6
         run: |
           file_path=$(find . -name '*.json' -type f -print -quit)
-          if[ file_path ]
+          if[ -e file_path ]
           then
            cat $file_path
            echo "jsonFilePath=$file_path" >> GITHUB_ENV
