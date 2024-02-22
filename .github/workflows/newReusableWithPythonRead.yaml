@@ -101,7 +101,7 @@ jobs:
       - name: check if zip file generated
         id: check-zip
         run: |
-           if[ $tmp/pkp.zip ]
+           if[ -f ${{ steps.step11.outputs.zip_file_path }} ]
            then
             echo "Zip file generated, proceeding with artifact upload"
             exit 1
