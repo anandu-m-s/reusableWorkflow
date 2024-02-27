@@ -1,6 +1,9 @@
 name: reusable workflow with python execution with artifacts in test branch
 on:
   workflow_call:
+   inputs:
+    file_path:
+     description: 'json file'
 
 jobs:
   called_repo_job:
@@ -52,9 +55,10 @@ jobs:
       - name: file read
         id: step6
         run: |
-          file_path=$(find . -name '*.json' -type f -print -quit)
-          cat $file_path
-          echo "jsonFilePath=$file_path" >> GITHUB_ENV
+          cat ${{ inputs.file_path }}
+          file_name=$(find . -name '*.json' -type f -print -quit)
+          cat $file_name
+          echo "jsonFilePath=$file_name" >> GITHUB_ENV
       - name: check if condition
         id: step99
         run: |
@@ -67,7 +71,7 @@ jobs:
       - name: check json access
         id: step7
         run:
-         cat $file_path      
+         cat $file_name      
       - name: download artifact
         id: step8
         uses: actions/download-artifact@v2
