@@ -20,4 +20,4 @@ jobs:
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
 
-          jf rt upload --url=https://anandutest.jfrog.io/artifactory --access-token=${{ secrets.JF_TOKEN }} "test10.txt" test-anandu/ --flat=true
+          jf rt upload --url=https://anandutest.jfrog.io/artifactory --access-token=${{ secrets.JF_TOKEN }} "test10.txt" anandu-jfrog-test/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
