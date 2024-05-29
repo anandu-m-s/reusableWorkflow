@@ -16,11 +16,13 @@ jobs:
       - name: connect
         run: |
           export SERVER_ID="test"
-          jf c add $SERVER_ID --url=$JF_URL --access-token=$JF_ACCESS_TOKEN --interactive=false
+          jf c add $SERVER_ID --url=$URL --access-token=$ACCESS_TOKEN --interactive=false
       - name: Push Build to Artifactory
         run: |
           echo "test file" > test7.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          jf rt upload "test7.txt" test-anandu/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          export PATH_TO_DIRECTORY="name/version/dates"
+
+          jf rt upload "test7.txt" example-repo-local/$PATH_TO_DIRECTORY --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
