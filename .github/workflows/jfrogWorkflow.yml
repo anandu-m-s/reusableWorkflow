@@ -19,8 +19,8 @@ jobs:
           jf c add $SERVER_ID --url=$JF_URL --access-token=$JF_ACCESS_TOKEN --interactive=false
       - name: Push Build to Artifactory
         run: |
-          echo "test file " > test5.txt
+          echo "test file " > test6.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          jf rt upload "test5.txt" "test-anandu/" --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          jf rt upload "test6.txt" test-anandu/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
