@@ -11,7 +11,8 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v3
         env:
           JF_URL: https://anandutest.jfrog.io/artifactory/pkp-repo
-          JF_ACCESS_TOKEN: cmVmdGtuOjAxOjE3NDg1MjAyNDI6dHQ0RUM1bFBoMENJdGZ3bGhPWHJNYjhmM3BB
+          JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
+
       - name: connect
         run: |
           export SERVER_ID="test"
