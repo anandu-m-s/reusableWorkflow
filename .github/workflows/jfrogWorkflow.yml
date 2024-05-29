@@ -18,10 +18,9 @@ jobs:
           export SERVER_ID="test"
           jf c add $SERVER_ID --url=$JF_URL --access-token=$JF_ACCESS_TOKEN --interactive=false
       - name: Push Build to Artifactory
-        id: artifactory
         run: |
-          echo "test file " > test1.txt
+          echo "test file " > test2.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          jf rt upload "test1.txt" support-content-generic/ --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          jf rt upload "test2.txt" / --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
