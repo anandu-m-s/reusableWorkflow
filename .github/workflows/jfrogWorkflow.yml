@@ -16,7 +16,7 @@ jobs:
       - name: connect
         run: |
           export SERVER_ID="test"
-          jf c add $SERVER_ID --url=$URL --access-token=$ACCESS_TOKEN --interactive=false
+          jf c add $SERVER_ID --url=$JF_URL --access-token=$JF_ACCESS_TOKEN --interactive=false
       - name: Push Build to Artifactory
         run: |
           echo "test file" > test7.txt
