@@ -10,7 +10,7 @@ jobs:
       - name: setup jfrog
         uses: jfrog/setup-jfrog-cli@v3
         env:
-          JF_URL: https://anandutest.jfrog.io/artifactory/support-content-generic/
+          JF_URL: https://anandutest.jfrog.io/artifactory/
           JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
 
       - name: connect
