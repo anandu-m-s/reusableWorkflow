@@ -13,16 +13,11 @@ jobs:
           JF_URL: https://anandutest.jfrog.io/artifactory
           JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
 
-      - name: connect
-        run: |
-          export SERVER_ID="test"
-          jf c add $SERVER_ID --url=$JF_URL --access-token=$JF_ACCESS_TOKEN --interactive=false
       - name: Push Build to Artifactory
         run: |
-          echo "test file" > test7.txt
+          echo "test file" > test10.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          export PATH_TO_DIRECTORY="name/version/dates"
 
-          jf rt upload "test7.txt" example-repo-local/$PATH_TO_DIRECTORY --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          jf rt u --url $JF_URL  --access-token=$JF_ACCESS_TOKEN "test10.txt" test-anandu/
