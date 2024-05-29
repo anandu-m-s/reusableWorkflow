@@ -15,10 +15,9 @@ jobs:
 
       - name: Push Build to Artifactory
         run: |
-          echo "test file" > test1.txt
+          echo "test file" > test10.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          export PATH_TO_DIRECTORY="anandu-jfrog-test"
 
-          jf rt upload --url=$JF_URL --access-token=$JF_ACCESS_TOKEN "test1.txt" $PATH_TO_DIRECTORY/ --flat=true
+          jf rt upload --url=https://anandutest.jfrog.io/artifactory --access-token=${{ secrets.JF_TOKEN }} "test10.txt" test-anandu/ --flat=true
