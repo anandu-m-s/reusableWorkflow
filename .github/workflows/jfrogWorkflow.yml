@@ -9,15 +9,16 @@ jobs:
     steps:
       - name: setup jfrog
         uses: jfrog/setup-jfrog-cli@v3
+
+      - name: Push Build to Artifactory
         env:
           JF_URL: https://anandutest.jfrog.io/artifactory
           JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
-
-      - name: Push Build to Artifactory
         run: |
-          echo "test file" > test10.txt
+          echo "test file" > test12.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
+          export PATH_TO_DIRECTORY="anandu-jfrog-test"
 
-          jf rt upload --url=https://anandutest.jfrog.io/artifactory --access-token=${{ secrets.JF_TOKEN }} "test10.txt" anandu-jfrog-test/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          jf rt upload --url=$JF_URL --access-token=$JF_ACCESS_TOKEN "test12.txt" anandu-jfrog-test/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
