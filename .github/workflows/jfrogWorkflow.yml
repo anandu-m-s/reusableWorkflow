@@ -10,7 +10,7 @@ jobs:
       - name: setup jfrog
         uses: jfrog/setup-jfrog-cli@v3
         env:
-          JF_URL: https://anandutest.jfrog.io/artifactory/pkp-repo
+          JF_URL: https://anandutest.jfrog.io/artifactory/support-content-generic
           JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
 
       - name: connect
@@ -20,9 +20,8 @@ jobs:
       - name: Push Build to Artifactory
         id: artifactory
         run: |
-          echo "test file " > test.txt
+          echo "test file " > test1.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          export PATH_TO_DIRECTORY="pkp-repo"
-          jf rt upload "test.txt" $PATH_TO_DIRECTORY/ --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          jf rt upload "test1.txt" --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
