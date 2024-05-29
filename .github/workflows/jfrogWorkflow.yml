@@ -20,4 +20,4 @@ jobs:
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
 
-          jf rt u --url $JF_URL --access-token=${{ secrets.JF_TOKEN }} "test10.txt" test-anandu/
+          jf rt upload --url=$JF_URL --access-token=${{ secrets.JF_TOKEN }} "test10.txt" test-anandu/
