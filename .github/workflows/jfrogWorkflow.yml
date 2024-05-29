@@ -23,4 +23,4 @@ jobs:
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          jf rt upload "test2.txt" / --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          jf rt upload "test2.txt" support-content-generic/ --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
