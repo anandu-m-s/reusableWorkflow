@@ -7,7 +7,7 @@ def store_json_to_temp():
        destination_path = os.path.join(workspace_path, "tmp")
        if not os.path.exists(destination_path):
                 os.makedirs(destination_path)
-       zip_file_path = os.path.join(destination_path,"jfrog-test1"+".zip")
+       zip_file_path = os.path.join(destination_path,"jfrog-test2"+".zip")
 
        with zipfile.ZipFile(zip_file_path, 'w') as zipf:
          zipf.writestr("jfrog-test.txt","hello")
