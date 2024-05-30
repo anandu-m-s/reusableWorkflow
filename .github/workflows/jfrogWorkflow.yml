@@ -43,7 +43,7 @@ jobs:
         id: jfrog-setup
         uses: jfrog/setup-jfrog-cli@v3
         env:
-          JF_URL: https://anandutest.jfrog.io/artifactory
+          JF_URL: https://anandutest.jfrog.io/artifactory/anandu-jfrog-test
           JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
       - run: |
           export SERVER_ID="test"
