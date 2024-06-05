@@ -27,7 +27,7 @@ jobs:
         if: ${{ steps.run-python.outcome == 'success' }}
         id: check-zip
         run: |
-          if [[ -f ${{ steps.run-python.outputs.pkp }} ]]
+          if [ -f ${{ steps.run-python.outputs.pkp }} ]
           then
             echo "ZIP_GENERATE=true" >> $GITHUB_OUTPUT
             echo "zip true"
