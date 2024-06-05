@@ -23,6 +23,19 @@ jobs:
         run: |
           python call_test.py
 
+      - name: check if zip file generated
+        if: ${{ steps.run-python.outcome == 'success' }}
+        id: check-zip
+        run: |
+          if [[ -f ${{ steps.run-python.outputs.pkp_zip_path }} ]]
+          then
+            echo "ZIP_GENERATE=true" >> $GITHUB_OUTPUT
+            echo "zip true"
+          else
+            echo "ZIP_GENERATE=false" >> $GITHUB_OUTPUT
+            echo "zip false"
+          fi
+
       - name: setup jfrog
         uses: jfrog/setup-jfrog-cli@v3
 
