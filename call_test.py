@@ -13,7 +13,7 @@ def store_json_to_temp():
          zipf.writestr("jfrog-test.txt","hello")
        print("ZIP file path : ",zip_file_path)
             # set zip file path as output
-       os.system("echo pkp_zip_path={} >> $GITHUB_OUTPUT".format(zip_file_path))   
+       os.system("echo pkp_zip={} >> $GITHUB_OUTPUT".format(zip_file_path))   
 
    except Exception as e:
         print(f"Error in store_json_to_temp : {e}")    
