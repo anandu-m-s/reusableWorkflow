@@ -23,7 +23,7 @@ jobs:
         run: |
           python call_test.py
 
-      - name: check if zip file generated
+      - name: check if zip file generate
         if: ${{ steps.run-python.outcome == 'success' }}
         id: check-zip
         run: |
