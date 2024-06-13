@@ -1,0 +1,107 @@
+name: PKP publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      workflow_id:
+        description: "workflow file name"
+      url:
+        description: "caller repo url"
+      caller_branch:
+        description: "caller workflow branch"
+      caller_repo_owner:
+        description: "caller checkout repo owner"
+      caller_repo_name:
+        description: "caller checkout repo name without owner"
+      publish_file:
+        description: "payload file"
+
+jobs:
+  set-environment:
+    name: set environment
+    runs-on: ubuntu-latest
+    outputs:
+      PUBLISH_ENVIRONMENT: ${{steps.set-environment.outputs.PUBLISH_ENVIRONMENT}}
+      PKP_URL: ${{steps.set-environment.outputs.PKP_URL}}
+    steps:
+      - name: checkout caller repo
+        id: checkout-caller
+        uses: actions/checkout@v3
+        with:
+          repository: ${{inputs.caller_repo_owner}}/${{inputs.caller_repo_name}}
+          ref: ${{ inputs.caller_branch }}
+
+      - name: set environment variable
+        id: set-environment
+        run: |
+          if [[ ${{ inputs.caller_branch }} == refs/heads/main ]]
+          then
+            echo "PUBLISH_ENVIRONMENT=ITG" >> $GITHUB_OUTPUT
+            echo "PKP_URL=https://api-int-itg.support.hpecorp.net/doc/ingester/pkp/generate" >> $GITHUB_OUTPUT
+          else
+            echo "PUBLISH_ENVIRONMENT=DEV" >> $GITHUB_OUTPUT
+            echo "PKP_URL=https://api-int-dev.support.hpecorp.net/doc/ingester/pkp/generate" >> $GITHUB_OUTPUT
+          fi
+
+  publish-pkp-zip:
+    runs-on: ubuntu-latest
+    needs: set-environment
+    environment: ${{needs.set-environment.outputs.PUBLISH_ENVIRONMENT}}
+    steps:
+      - name: checkout actions repo
+        uses: actions/checkout@v3
+        with:
+          repository: TS-RnD/km-doc-actions
+
+      - name: checkout caller repo
+        uses: actions/checkout@v3
+        with:
+          repository: ${{inputs.caller_repo_owner}}/${{inputs.caller_repo_name}}
+          ref: ${{inputs.caller_branch}}
+          path: ${{inputs.caller_repo_owner}}/${{inputs.caller_repo_name}}
+
+      - name: check if json file present
+        id: check-json
+        run: |
+          file_path="${{inputs.caller_repo_owner}}/${{inputs.caller_repo_name}}/${{inputs.publish_file}}"
+          if [ -f "$file_path" ]
+          then
+           echo "json file is present"
+           echo "FILE_FOUND=true" >> $GITHUB_OUTPUT
+          else
+           echo "json file is not present"
+           echo "FILE_FOUND=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: setup python
+        id: setup-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8
+
+      - name: install dependencies
+        id: dependencies
+        run: |
+          pip install requests
+
+      - name: run python script to generate pkp zip
+        if: steps.check-json.outputs.FILE_FOUND == 'true'
+        id: run-python
+        env:
+          AUTH_TOKEN: 95367e89-80cb-4076-82f8-abb7d8fc6d1b
+          COMMUNICATION_CHANNEL: 9ba7ca9d-36ff-4379-b2c4-259924a62d97
+          PKP_URL: ${{needs.set-environment.outputs.PKP_URL}}
+        run: |
+          python scripts/getPkpZip.py ${{inputs.caller_repo_owner}}/${{inputs.caller_repo_name}}/${{inputs.publish_file}} ${{ inputs.publish_file}}
+
+      - name: check if zip file generated
+        if: ${{ steps.run-python.outcome == 'success' }}
+        id: check-zip
+        run: |
+          zip_path="${{ steps.run-python.outputs.pkp_zip_path }}"
+          if [[ -n "$zip_path" && -f "$zip_path" ]]
+          then
+            echo "ZIP_GENERATE=true" >> $GITHUB_OUTPUT
+          else
+            echo "ZIP_GENERATE=false" >> $GITHUB_OUTPUT
+          fi
