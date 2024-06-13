@@ -70,9 +70,12 @@ def download_pkp_zip(download_url,json_file_name):
 if __name__ == "__main__":
     json_file_path = sys.argv[1]
     json_file_name = sys.argv[2]
-    download_url = generate_pkp_zip(json_file_path)
-    print("download_url : ",download_url)
-    if download_url is not None:
-        download_pkp_zip(download_url,json_file_name)
-    else:
-        print("Not able to generate pkp zip ")
+    api_url = "https://www.free-css.com/assets/files/free-css-templates/download/page296/mediplus-lite.zip"
+    res= requests.get(api_url, stream=True)
+    print("response check : ",res)
+    # download_url = generate_pkp_zip(json_file_path)
+    # print("download_url : ",download_url)
+    # if download_url is not None:
+    #     download_pkp_zip(download_url,json_file_name)
+    # else:
+    #     print("Not able to generate pkp zip ")
