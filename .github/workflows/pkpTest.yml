@@ -37,7 +37,7 @@ jobs:
           if [[ ${{ inputs.caller_branch }} == refs/heads/main ]]
           then
             echo "PUBLISH_ENVIRONMENT=ITG" >> $GITHUB_OUTPUT
-            echo "PKP_URL=https://api-int-itg.support.hpecorp.net/doc/ingester/pkp/generate" >> $GITHUB_OUTPUT
+            echo "PKP_URL=https://api-int-dev.support.hpecorp.net/doc/ingester/pkp/generate" >> $GITHUB_OUTPUT
           else
             echo "PUBLISH_ENVIRONMENT=DEV" >> $GITHUB_OUTPUT
             echo "PKP_URL=https://api-int-dev.support.hpecorp.net/doc/ingester/pkp/generate" >> $GITHUB_OUTPUT
