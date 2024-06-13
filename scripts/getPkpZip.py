@@ -15,7 +15,7 @@ def generate_pkp_zip(json_file_path):
         print("file path",json_file_path)
         if json_file_path.endswith('.json'):
             files = {'file': open(json_file_path, 'rb')}
-            response = requests.post(pkp_url,files=files,headers=headers,verify=False)
+            response = requests.post(pkp_url,files=files,headers=headers)
             print("response :",response.status_code)
         if response.status_code in [400,404,500]:
             print("Error occurred while fetching pkp download URL with status code: ",response.status_code)
