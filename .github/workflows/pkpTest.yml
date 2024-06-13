@@ -51,7 +51,7 @@ jobs:
       - name: checkout actions repo
         uses: actions/checkout@v3
         with:
-          repository: TS-RnD/km-doc-actions
+          repository: anandu-m-s/reusableWorkflow
 
       - name: checkout caller repo
         uses: actions/checkout@v3
