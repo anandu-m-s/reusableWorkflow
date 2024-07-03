@@ -42,14 +42,14 @@ jobs:
 
       - name: Push Build to Artifactory
         env:
-          JF_URL: https://anandutest.jfrog.io/artifactory
-          JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
+          JF_URL: https://dbizai.jfrog.io/artifactory
+          JF_ACCESS_TOKEN: ${{ secrets.JF_NEW_SECRET }}
         run: |
           echo "test file" > test12.txt
           export BUILD_NAME="test-build"
           export BUILD_MODULE="test-module"
           export BUILD_NUMBER="1"
-          export PATH_TO_DIRECTORY="anandu-jfrog-test"
+          export PATH_TO_DIRECTORY="testpkp-generic-local"
 
           jf rt upload --url=$JF_URL --access-token=$JF_ACCESS_TOKEN ${{ steps.run-python.outputs.pkp_zip_path }} $PATH_TO_DIRECTORY/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
 
