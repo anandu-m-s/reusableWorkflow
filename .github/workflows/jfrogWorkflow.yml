@@ -37,6 +37,14 @@ jobs:
             echo "zip false"
           fi
 
+      - name: create tmp dir to download
+        run: |
+          mkdir -p ${{ runner.temp}}/download_zip
+
+      - name: list files in temp
+        run: |
+          ls -alh ${{ runner.temp}}/download_zip
+
       - name: jfrog setup
         id: jfrog-setup
         uses: jfrog/setup-jfrog-cli@v3
@@ -62,7 +70,11 @@ jobs:
 
       - name: download from jfrog
         run: |
-          jfrog rt download --url=https://dbizai.jfrog.io/artifactory --access-token=${{ secrets.JF_TOKEN }} testpkp-generic-local/jfrog-test2.zip ${{ github.workspace}} --flat=true
+          jfrog rt download --url=https://dbizai.jfrog.io/artifactory --access-token=${{ secrets.JF_TOKEN }} testpkp-generic-local/jfrog-test2.zip ${{ runner.temp}}/download_zip/ --flat=true
+
+      - name: list files in temp
+        run: |
+          ls -alh ${{ runner.temp}}/download_zip
 
       # - name: jfrog setup
       #   id: jfrog-setup
