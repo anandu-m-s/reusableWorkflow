@@ -62,7 +62,7 @@ jobs:
 
       - name: download from jfrog
         run: |
-          jfrog rt download --access-token=${{ secrets.JF_TOKEN }} --url="https://dbizai.jfrog.io/artifactory/testpkp-generic-local/" "${{ github.workspace}}" --flat=true
+          jfrog rt download --url="https://dbizai.jfrog.io/artifactory --access-token=${{ secrets.JF_TOKEN }} testpkp-generic-local/jfrog-test2.zip ${{ github.workspace}} --flat=true
 
       # - name: jfrog setup
       #   id: jfrog-setup
