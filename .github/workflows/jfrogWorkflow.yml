@@ -43,7 +43,7 @@ jobs:
       - name: Push Build to Artifactory
         env:
           JF_URL: https://dbizai.jfrog.io/artifactory
-          JF_ACCESS_TOKEN: ${{ secrets.JF_NEW_SECRET }}
+          JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
         run: |
           echo "test file" > test12.txt
           export BUILD_NAME="test-build"
