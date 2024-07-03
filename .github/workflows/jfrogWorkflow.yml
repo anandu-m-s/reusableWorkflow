@@ -48,6 +48,9 @@ jobs:
           jf c add $SERVER_ID --url=$JF_URL --access-token=$JF_ACCESS_TOKEN --interactive=false
 
       - name: Push Build to Artifactory
+        env:
+          JF_URL: https://dbizai.jfrog.io/artifactory
+          JF_ACCESS_TOKEN: ${{ secrets.JF_TOKEN }}
         run: |
           echo "test file" > test12.txt
           export BUILD_NAME="test-build"
@@ -55,11 +58,11 @@ jobs:
           export BUILD_NUMBER="1"
           export PATH_TO_DIRECTORY="testpkp-generic-local"
 
-          jf rt upload ${{ steps.run-python.outputs.pkp_zip_path }} $PATH_TO_DIRECTORY/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
+          jf rt upload --url=$JF_URL --access-token=$JF_ACCESS_TOKEN ${{ steps.run-python.outputs.pkp_zip_path }} $PATH_TO_DIRECTORY/ --flat=true --build-name $BUILD_NAME --build-number $BUILD_NUMBER --module $BUILD_MODULE
 
       - name: download from jfrog
         run: |
-          jfrog rt download --access-token=${{ secrets.JF_TOKEN }} --url="https://dbizai.jfrog.io/artifactory/testpkp-generic-local/jfrog-test2.zip" "." --flat=true
+          jfrog rt download --access-token=${{ secrets.JF_TOKEN }} --url="https://dbizai.jfrog.io/artifactory/testpkp-generic-local/" "." --flat=true
 
       # - name: jfrog setup
       #   id: jfrog-setup
